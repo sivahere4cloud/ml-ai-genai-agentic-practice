@@ -44,3 +44,16 @@ streamlit run app.py
 
 ## Next Steps
 Docker, Kubernetes, CI/CD, AWS/Azure deployment — deferred until multiple model cycles are complete.
+
+## Hyperparameter Tuning
+Applied GridSearchCV (C: [0.01, 0.1, 1, 10, 100], penalty: [l1, l2]) with 5-fold CV, optimizing for F1 score.
+Result: tuned model achieved identical F1 (0.7424) to the default LogisticRegression configuration —
+indicating the default settings were already near-optimal for this dataset/feature set.
+
+## Hyperparameter Tuning Comparison
+Both GridSearchCV (exhaustive, 10 combinations) and RandomizedSearchCV (10 of 14 sampled) 
+converged to F1 = 0.7424 — identical to the untuned default model. This indicates the 
+model's performance ceiling here is governed by feature quality/engineering rather than 
+hyperparameter choice. Further improvement would likely require additional feature 
+engineering (e.g., extracting titles from Name, family size from SibSp+Parch) rather 
+than further tuning.
